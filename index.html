@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ռաֆի հրավեր</title>
 
-    <link rel="stylesheet" href="style.css?v=20260430_0146" />
+    <link rel="stylesheet" href="style.css?v=20260430_0154" />
 
     <!-- Telegram WebApp API -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -20,7 +20,14 @@
 
         <div class="gateName" id="nameWrap" aria-hidden="true">
           <label class="gateNameLabel" for="nameInput">Քո անունը</label>
-          <input id="nameInput" class="gateNameInput" type="text" inputmode="text" autocomplete="name" placeholder="Օրինակ՝ Արմեն" />
+          <input
+            id="nameInput"
+            class="gateNameInput"
+            type="text"
+            inputmode="text"
+            autocomplete="name"
+            placeholder="Օրինակ՝ Արմեն"
+          />
         </div>
 
         <div class="gateRow">
@@ -52,16 +59,24 @@
             </p>
           </header>
 
-          <div class="tooth-wrap" aria-hidden="true">
-            <div class="tooth" id="tooth">
-              <div class="shine"></div>
-              <div class="face">
-                <span class="eye"></span><span class="eye"></span>
-                <span class="smile"></span>
-              </div>
-            </div>
+          <!-- вместо зубика -->
+          <div
+            aria-hidden="true"
+            style="
+              display: grid;
+              place-items: center;
+              margin: 10px 0 6px;
+              font-size: 56px;
+              line-height: 1;
+              filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.12));
+            "
+          >
+            🎉🎈🎂
           </div>
-          <p class="quote reveal" id="quoteText" data-reveal="3">«Ում գրկեմ՝ նրան էլ կթողնեմ նկար անի հետս… միգուցե 😌»</p>
+
+          <p class="quote reveal" id="quoteText" data-reveal="3">
+            «Ում գրկեմ՝ նրան էլ կթողնեմ նկար անի հետս… միգուցե 😌»
+          </p>
 
           <div class="stepActions">
             <button class="primary" id="toLetterBtn" type="button">Կարդալ նամակը</button>
@@ -223,6 +238,6 @@
       </div>
     </div>
 
-    <script src="script.js?v=20260430_0146"></script>
+    <script src="script.js?v=20260430_0154"></script>
   </body>
 </html>
