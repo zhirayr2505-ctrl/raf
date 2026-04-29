@@ -285,6 +285,21 @@ function main() {
     if (contactOnly) contactOnly.setAttribute("aria-hidden", "true");
   }
 
+  function updateHelloTitle() {
+    const tgName = isTelegram ? getTelegramUserName(tg) : null;
+    const guest = !isTelegram ? localStorage.getItem("guestName") : null;
+    const display = (tgName || guest || "").trim();
+    if (display) $("helloTitle").textContent = `Բարև, ${display}`;
+    else $("helloTitle").textContent = "Բարև";
+  }
+
+  // Initial attempt + retries (Telegram user can appear a bit later)
+  updateHelloTitle();
+  if (isTelegram) {
+    setTimeout(updateHelloTitle, 400);
+    setTimeout(updateHelloTitle, 1200);
+  }
+
   $("continueBtn").addEventListener("click", async () => {
     if (!isTelegram) {
       const n = (nameInput.value || "").trim();
@@ -309,6 +324,9 @@ function main() {
         // ignore; user can tap audio button later
       }
     }
+
+    // Now we definitely have guestName (browser) and Telegram is ready (most cases)
+    updateHelloTitle();
   });
 
   // Event info block
@@ -326,10 +344,7 @@ function main() {
 
   startConfetti(1600);
 
-  const name = getTelegramUserName(tg);
-  const guestName = !isTelegram ? localStorage.getItem("guestName") : null;
-  const displayName = name || guestName;
-  if (displayName) $("helloTitle").textContent = `Բարև, ${displayName}`;
+  // helloTitle is handled by updateHelloTitle()
 
   const voice = $("voice");
   const soundFab = $("soundFab");
