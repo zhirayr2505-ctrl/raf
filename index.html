@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ռաֆի հրավեր</title>
+
+    <link rel="stylesheet" href="style.css?v=20260430_0029" />
+
+    <!-- Telegram WebApp API -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <div class="gate" id="gate" aria-hidden="false">
+      <div class="gateCard" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+        <h2 id="gateTitle">Մինչ սկսելը</h2>
+        <p class="gateText" id="gateText">
+          Եթե բացել ես սա ոչ թե Telegram-ի ներսում՝ նախ գրիր քո անունը, հետո ընտրիր՝ ձայնը լինի, թե չէ։
+        </p>
+
+        <div class="gateName" id="nameWrap" aria-hidden="true">
+          <label class="gateNameLabel" for="nameInput">Քո անունը</label>
+          <input id="nameInput" class="gateNameInput" type="text" inputmode="text" autocomplete="name" placeholder="Օրինակ՝ Արմեն" />
+        </div>
+
+        <div class="gateRow">
+          <span class="gateLabel">Ձայն</span>
+          <label class="switch">
+            <input id="soundToggle" type="checkbox" />
+            <span class="slider" aria-hidden="true"></span>
+          </label>
+        </div>
+
+        <button class="primary" id="continueBtn">Շարունակել</button>
+        <p class="gateHint" id="gateHint">Ձայնը կսկսի միայն քո սեղմումից (բրաուզերի կանոններ)։</p>
+      </div>
+    </div>
+
+    <div class="app">
+      <header class="hero">
+        <div class="badge">1 տարիք + 1 ատամիկ</div>
+        <h1 id="helloTitle">Բարև, ընկերիկ</h1>
+        <p class="lead" id="leadText">
+          Ներքևում կա իմ նամակը, ու ամենակարևորը՝ երբ ու որտեղ ենք հանդիպում։
+        </p>
+      </header>
+
+      <section class="card letter">
+        <div class="sticker s1" aria-hidden="true">🎈</div>
+        <div class="sticker s2" aria-hidden="true">🦷</div>
+        <div class="sticker s3" aria-hidden="true">🎂</div>
+
+        <div class="letterHead">
+          <div class="letterTitle">Նամակ Ռաֆից</div>
+          <div class="letterSub">մի քիչ չարաճճի, մի քիչ քնքուշ</div>
+        </div>
+
+        <div class="letterBody">
+          <p>
+            Ողջույն իմ սիրելի ընկերներ ու բոլոր-բոլոր ինձ սիրող, երես տվող, կակա առնող հարազատներ։
+            Գիտեմ, որ բոլորդ սպասում եք կարևոր օրվան՝ իմ ծնունդին, ես էլ եմ շատ ուրախ, որ վերջապես բոլորիդ
+            կտեսնեմ ու լիքը-լիքը կխաղամ ձեզ հետ։
+          </p>
+          <p>
+            Ի դեպ, ես արդեն պլաններ ունեմ՝ մի քիչ կծիծաղենք, մի քիչ կվազվզեմ, մի քիչ ձեզ կքշեմ իմ հետևից 😏
+            Ու ով ինձ չգրկի՝ նեղանում եմ տեղում 😄
+          </p>
+          <p>
+            Հա, ու զգուշացնեմ՝ ես արդեն ունեմ ատամիկներ․ թշիկներս շատ չպոկեք, թե չէ… կկծեմ 😁
+            Բայց եթե լավ պահեք ձեզ, գուցե ներեմ 😈 ու նույնիսկ թույլ տամ մի քիչ ինձ գրկեք 😌
+          </p>
+          <p>
+            Դե լավ, ասեմ՝ հրավիրում եմ բոլորիդ մայիսի քսանհինգին իմ ծնունդին ու ատամհատիկին։
+            Մեծ սիրով կսպասեմ բոլորիդ։
+          </p>
+          <p class="signature">Ձեր չարաճճի Ռաֆ ❤️</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Մինչ տոնն այսքանը մնաց</h2>
+        <div class="countdown" id="countdown">
+          <div class="tile"><div class="num" id="d">—</div><div class="lbl">օր</div></div>
+          <div class="tile"><div class="num" id="h">—</div><div class="lbl">ժամ</div></div>
+          <div class="tile"><div class="num" id="m">—</div><div class="lbl">րոպե</div></div>
+          <div class="tile"><div class="num" id="s">—</div><div class="lbl">վրկ</div></div>
+        </div>
+        <div class="eventInfo">
+          <div class="eventRow">
+            <span class="eventIcon">🕒</span>
+            <span class="eventText" id="eventWhen">—</span>
+          </div>
+          <div class="eventRow">
+            <span class="eventIcon">🍽</span>
+            <span class="eventText" id="eventWhere">—</span>
+          </div>
+          <div class="eventRow">
+            <span class="eventIcon">📍</span>
+            <span class="eventText" id="eventAddress">—</span>
+          </div>
+          <button class="ghost" id="openMapBtn" type="button">Բացել քարտեզը</button>
+        </div>
+
+        <div class="mapWrap" aria-label="Google map">
+          <iframe
+            id="mapFrame"
+            title="Google map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="about:blank"
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="card fun">
+        <div class="tooth-wrap" aria-hidden="true">
+          <div class="tooth" id="tooth">
+            <div class="shine"></div>
+            <div class="face">
+              <span class="eye"></span><span class="eye"></span>
+              <span class="smile"></span>
+            </div>
+          </div>
+        </div>
+        <p class="quote" id="quoteText">«Ում գրկեմ՝ նրան էլ կթողնեմ նկար անի հետս… միգուցե 😌»</p>
+
+        <div class="audio">
+          <button class="ghost" id="audioBtn">Ձայնը միացնե՞մ</button>
+          <span class="audioHint" id="audioHint">Սեղմիր, որ Ռաֆը պատմի ամեն ինչ իր ձայնով։</span>
+          <audio id="voice" preload="none">
+            <source src="raf-voice.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </section>
+
+      <section class="card actions">
+        <div class="buttons">
+          <button class="primary" id="yesBtn">Կգամ</button>
+          <button class="ghost danger" id="noBtn">Չեմ գա</button>
+          <button class="ghost" id="laterBtn">Կպատասխանեմ հետո</button>
+        </div>
+        <button class="ghost" id="closeBtn">Փակել</button>
+        <p class="hint" id="hint">Ընտրիր տարբերակ, ու ես կասեմ բոտին։</p>
+      </section>
+    </div>
+
+    <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+
+    <div class="modal" id="reasonModal" aria-hidden="true">
+      <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="reasonTitle">
+        <h3 id="reasonTitle">Վայ… ես մի քիչ տխրեցի 🥺</h3>
+        <p class="modalText">Մի փոքր պատճառ գրիր (կարճ էլ կարելի է)։ Ես դա կուղարկեմ կազմակերպիչին։</p>
+        <textarea id="reasonInput" rows="3" placeholder="Պատճառը..."></textarea>
+        <div class="modalActions">
+          <button class="primary" id="sendNoBtn">Ուղարկել</button>
+          <button class="ghost" id="cancelNoBtn">Չեղարկել</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="statusModal" aria-hidden="true">
+      <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="statusTitle">
+        <h3 id="statusTitle">—</h3>
+        <p class="modalText" id="statusText">—</p>
+        <div class="modalActions">
+          <button class="ghost" id="backToChatBtn" type="button">Վերադառնալ չատ</button>
+          <button class="primary" id="statusOkBtn" type="button">Լավ</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js?v=20260430_0029"></script>
+  </body>
+</html>
